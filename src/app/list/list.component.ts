@@ -7,24 +7,8 @@ import { TodosService } from '../todos.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
+  todos$ = this._todosService.getItems();
+
   constructor(private _todosService: TodosService) {}
-  todos!: IItem[];
-
-  private _generateId(): number {
-    return this.todos.length + 1;
-  }
-
-  newTodo(): void {
-    this.todos?.push({
-      id: this._generateId(),
-      name: 'Еще одна хорошая задача',
-      description: 'Описание для еще одной хорошей задачи',
-    });
-  }
-  ngOnInit(): void {
-    this._todosService.getItems().subscribe((todos) => {
-      this.todos = todos;
-    });
-  }
 }

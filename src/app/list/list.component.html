@@ -1,11 +1,5 @@
 <h3>To-do list</h3>
-<form>
-  <input type="text" placeholder="Введите название">
-  <input type="text" placeholder="Введите описание">
-  <button (click)="newTodo()">Создать Задачу</button>
-</form>
-<ul>
-  <ng-container *ngIf="todos">
-    <app-item *ngFor="let todo of todos" [item]="todo"></app-item>
-  </ng-container>
+<app-add-item-form></app-add-item-form>
+<ul *ngIf="todos$ |async as todos">
+  <app-item *ngFor="let todo of todos" [item]="todo"></app-item>
 </ul>

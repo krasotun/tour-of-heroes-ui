@@ -1,0 +1,5 @@
+<form [formGroup]="addItemForm">
+  <input formControlName="name" type="text" placeholder="Введите название">
+  <input formControlName="description" type="text" placeholder="Введите описание">
+  <button (click)="newTodo()">Создать Задачу</button>
+</form>
