@@ -1,5 +1,5 @@
-<li class="wrapper">
-  <p>Номер</p>
-  <p>Название</p>
-  <p>Описание</p>
+<li class="wrapper" *ngIf="item">
+  <p>Номер:{{item.id}}</p>
+  <p>Название:{{item.name}}</p>
+  <p>Описание:{{item.description}}</p>
 </li>
