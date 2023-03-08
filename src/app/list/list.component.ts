@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IItem } from '../data/item';
 import { TodosService } from '../todos.service';
 
 @Component({
@@ -6,15 +7,24 @@ import { TodosService } from '../todos.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
-export class ListComponent {
+export class ListComponent implements OnInit {
   constructor(private _todosService: TodosService) {}
-  todos$ = this._todosService.todos$;
+  todos!: IItem[];
+
+  private _generateId(): number {
+    return this.todos.length + 1;
+  }
+
   newTodo(): void {
-    console.log('newTodo pressedd');
-    this._todosService.addTodo({
-      id: 25,
-      name: 'Еще одно дело',
-      description: 'Всем делам дело',
+    this.todos?.push({
+      id: this._generateId(),
+      name: 'Еще одна хорошая задача',
+      description: 'Описание для еще одной хорошей задачи',
+    });
+  }
+  ngOnInit(): void {
+    this._todosService.getItems().subscribe((todos) => {
+      this.todos = todos;
     });
   }
 }
