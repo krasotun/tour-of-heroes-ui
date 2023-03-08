@@ -1,5 +1,9 @@
 <h3>To-do list</h3>
-<button (click)="newTodo()">Новое дело</button>
+<form>
+  <input type="text" placeholder="Введите название">
+  <input type="text" placeholder="Введите описание">
+  <button (click)="newTodo()">Создать Задачу</button>
+</form>
 <ul>
   <ng-container *ngIf="todos">
     <app-item *ngFor="let todo of todos" [item]="todo"></app-item>
